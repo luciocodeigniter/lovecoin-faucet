@@ -1,14 +1,20 @@
+import { useState } from 'react';
 import { mint } from './Web3Service';
 
 function App() {
 
+  const [message, setMessage] = useState('');
+
   const handleWalletConnect = () => {
+
+    setMessage('Requesting your tokens. Please, wait...');
+
     mint()
       .then((transaction) => {
-        alert(transaction);
+        setMessage(`Your tokens were sent. Transaction ID: \n${transaction}`);
       })
       .catch((error) => {
-        alert(error.message);
+        setMessage(error.message);
       });
   }
 
@@ -32,6 +38,9 @@ function App() {
             <img src="/assets/metamask.svg" alt="MetaMask logo" width={48} />
             Connect MetaMask
           </button>
+        </p>
+        <p className='lead'>
+          {message}
         </p>
       </main>
 
