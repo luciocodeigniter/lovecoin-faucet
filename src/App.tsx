@@ -32,7 +32,7 @@ function App() {
 
       <main className="px-3">
         <h1>Get your LoveCoins</h1>
-        <p className="lead">Once a two days, earn 1.000 coins for free just connecting your MetaMask below.</p>
+        <p className="lead">Once a two days, earn coins for free just connecting your MetaMask below.</p>
         <p className="lead">
           <button onClick={handleWalletConnect} className="btn btn-lg btn-secondary fw-bold border-white bg-white">
             <img src="/assets/metamask.svg" alt="MetaMask logo" width={48} />
