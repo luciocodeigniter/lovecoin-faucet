@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# LOVE Token DApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicação descentralizada (DApp) foi desenvolvida para permitir que os usuários mintem o token **LOVE** diretamente através de uma interface simples e intuitiva. Utilizando a MetaMask, os usuários podem interagir com a blockchain para criar novos tokens **LOVE** em sua carteira, respeitando um mecanismo de **time lock** que impede o abuso de solicitações consecutivas.
 
-## Available Scripts
+## Descrição
 
-In the project directory, you can run:
+A DApp é construída em **React** e utiliza a **MetaMask** para facilitar a interação com contratos inteligentes na blockchain. O processo de mintagem é gerenciado através da biblioteca **Web3.js**, e os usuários podem criar tokens **LOVE** de maneira controlada, com um tempo de espera entre as transações para evitar abusos. O saldo dos tokens mintados é visualizado diretamente na carteira MetaMask do usuário.
 
-### `npm start`
+### Funcionalidades principais:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Conexão com MetaMask**: Os usuários se conectam à sua carteira MetaMask para interagir com a aplicação.
+- **Mintagem de Tokens**: Geração de novos tokens **LOVE**, limitada por um **time lock** para evitar múltiplos saques em um curto período.
+- **Verificação de Saldo**: O saldo de tokens **LOVE** é visto diretamente na MetaMask, e não na interface da DApp.
+- **Interface amigável**: Desenvolvida em React para proporcionar uma experiência de usuário simples e responsiva.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Fluxo de uso:
 
-### `npm test`
+1. **Conectar a MetaMask**: O usuário conecta sua carteira MetaMask à DApp.
+2. **Mintar tokens**: Após a conexão, o usuário pode mintar tokens **LOVE** e precisa aguardar o período do time lock antes de realizar outra transação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologias Utilizadas
 
-### `npm run build`
+- **React**: Utilizado para construir a interface de usuário.
+- **MetaMask**: Utilizada para gerenciar a carteira e transações dos usuários.
+- **Web3.js**: Utilizado para a comunicação com a blockchain e interação com o contrato inteligente.
+- **Solidity**: Linguagem utilizada para desenvolver o contrato inteligente que gerencia a mintagem dos tokens **LOVE**.
+- **Time Lock**: Implementado para garantir que haja um intervalo de tempo entre as mintagens de tokens, evitando abusos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Finalidade
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+A DApp LOVE Token foi criada para facilitar a criação de tokens personalizados de forma controlada e segura, com um sistema de time lock para proteger contra abusos. É ideal para testes e experimentação em redes de desenvolvimento, podendo ser adaptada para redes principais.
