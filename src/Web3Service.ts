@@ -1,15 +1,17 @@
 import Web3 from "web3"; // importando uma classe Web3
-import ABI from "./abi.json"; // importando o ABI pra memória
+import axios from "axios";
 
-// o `` converte para string
-const CONTRACT_ADDRESS = `${process.env.REACT_APP_CONTRACT_ADDRESS}`;
-
+const API_URL = `${process.env.REACT_APP_API_URL}`;
 
 export async function mint() {
 
-    if (!window.ethereum) {
-        throw new Error(`No MetaMask found!`);
+    const nextMint = localStorage.getItem('nextMint');
+
+    // o timestamp do nextmin é super a data e hora atual?
+    if (nextMint && parseInt(nextMint) > Date.now()) {
+        throw new Error(`You are only allowed to receive tokens every two days`);
     }
+
 
     // agora que temos a metamask no navegador, 
     // podemos obter uma instância de conexão com essa carteira
@@ -24,14 +26,12 @@ export async function mint() {
         throw new Error(`Permission not granted!`);
     }
 
-    // instância de conexão com o contrato
-    const contract = new web3Instance.eth.Contract(ABI, CONTRACT_ADDRESS, { from: accounts[0] });
+    const response = await axios.post(`${API_URL}/mint/${accounts[0]}`);
 
-    // agora executamos o mint()
-    const transaction = await contract.methods.mint().send(); // aqui estamos alterando o estado da blockchain, então haverá taxa
-    console.log(transaction.transactionHash);
+    localStorage.setItem('wallet', accounts[0]);
+    // dois dias no futuro, pois é assim que está no contrato
+    localStorage.setItem('nextMint', `${Date.now() + (1000 * 60 * 60 * 24 * 2)}`);
 
-    // retorno o hash da transação
-    return transaction.transactionHash;
+    return response.data;
 
 }
