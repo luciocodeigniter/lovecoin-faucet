@@ -8,6 +8,10 @@ export async function mint() {
     const nextMint = localStorage.getItem('nextMint');
 
     // o timestamp do nextmin é super a data e hora atual?
+    // ou seja, está no futuro?
+    // com isso definimos uma trava no navegador para minimizar/dificultar
+    // o usuário ficar clicando no botão e esgotar os valores em carteira 
+    // para arcar com as taxas de mint
     if (nextMint && parseInt(nextMint) > Date.now()) {
         throw new Error(`You are only allowed to receive tokens every two days`);
     }
@@ -26,12 +30,13 @@ export async function mint() {
         throw new Error(`Permission not granted!`);
     }
 
-    const response = await axios.post(`${API_URL}/mint/${accounts[0]}`);
-
+    //! definimos antes do `axios.post`
     localStorage.setItem('wallet', accounts[0]);
     // dois dias no futuro, pois é assim que está no contrato
     localStorage.setItem('nextMint', `${Date.now() + (1000 * 60 * 60 * 24 * 2)}`);
 
+    
+    const response = await axios.post(`${API_URL}/mint/${accounts[0]}`);
     return response.data;
 
 }

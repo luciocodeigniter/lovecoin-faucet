@@ -18,7 +18,7 @@ function App() {
 
     mint()
       .then((transaction) => {
-        setMessage(`Your tokens were sent. Transaction ID: \n${transaction}`);
+        setMessage(`Your tokens were sent to ${localStorage.getItem('wallet')}. \n Transaction ID: ${transaction}`);
       })
       .catch((error) => {
         setMessage(error.response ? error.response.data : error.message);
